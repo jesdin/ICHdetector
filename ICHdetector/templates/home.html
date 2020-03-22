@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>INTRODUCTION</title>
+        <style>
+            body{
+                margin:0;
+                padding:0;
+                background-color: black;
+            }
+            #text{
+                color: white;
+                font-size: 40px;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-family: "Montserrat";
+                text-align: center;
+            }
+        </style>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            var i = 0,text;
+            text = "BRAIN HEMORRHAGE DETECTION";
+            function typing(){
+                if(i < text.length){
+                    document.getElementById("text").innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing,250);
+                }
+            }
+            // Wait for the function to upload
+            $( document ).ready(function() {
+                typing();
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container" id="text">
+            
+        </div>
+    </body>
+</html>
