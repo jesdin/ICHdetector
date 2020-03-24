@@ -22,5 +22,6 @@ from webapp import views
 # ]
 
 urlpatterns = [
-    path('',views.home,name='home')
+    path('',views.home,name='home'),
+    path('detector',views.go_to_detector,name = 'go_to_detector')
 ]
