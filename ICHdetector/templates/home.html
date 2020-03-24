@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>INTRODUCTION</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            body{
+                margin:0;
+                padding:0;
+                background-color: black;
+            }
+            #text{
+                color: white;
+                /* color: black; */
+                font-size: 60px;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-family: "Montserrat";
+                text-align: center;
+            }
+            #jesdin{
+                color: white;
+                /* color: black; */
+                font-size: 40px;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-family: "Montserrat";
+                text-align: center;
+            }
+            #prish{
+                color: white;
+                /* color: black; */
+                font-size: 40px;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-family: "Montserrat";
+                text-align: center;
+            }
+            #prajwal{
+                color: white;
+                /* color: black; */
+                font-size: 40px;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-family: "Montserrat";
+                text-align: center;
+            }
+            #goto{
+                height: 100px;
+                font-size:40px;
+            }
+        </style>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            var i = 0,text;
+            text = "BRAIN HEMORRHAGE DETECTION";
+            function typing(){
+                if(i < text.length){
+                    document.getElementById("text").innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing,100);
+                }
+            }
+            var j = 0,text1;
+            text1 = "56. JESDIN RAPHAEL";
+            function typing56(){
+                if(j < text1.length){
+                    document.getElementById("jesdin").innerHTML += text1.charAt(j);
+                    j++;
+                    setTimeout(typing56,120);
+                }
+            }
+            var k = 0,text2;
+            text2 = "57. PRISHITA KADAM";
+            function typing57(){
+                if(k < text2.length){
+                    document.getElementById("prish").innerHTML += text2.charAt(k);
+                    k++;
+                    setTimeout(typing57,120);
+                }
+            }
+            var l = 0,text3;
+            text3 = "59. PRAJWAL KARALE";
+            function typing59(){
+                if(l < text3.length){
+                    document.getElementById("prajwal").innerHTML += text3.charAt(l);
+                    l++;
+                    setTimeout(typing59,120);
+                }
+            }
+            // Wait for the function to upload
+            $( document ).ready(function() {
+                typing();
+                typing56();
+                typing57();
+                typing59();
+                $('#showme').delay(3000).show(0);
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container" id="text">
+            
+        </div>
+        <div class="mt-md-4">
+            <br>
+        </div>
+        <div class="container" id="jesdin">
+
+        </div>
+        <br>
+        <div class="container" id="prish">
+
+        </div>
+        <br>
+        <div class="container" id="prajwal">
+
+        </div>
+        <br><br>
+        <form action="detector">
+            <div class="container" id="showme" style="display:none;">
+                <input type="submit" class="btn btn-light btn-lg btn-block" id="goto" value="GO TO ICH DETECTOR">
+            </div>
+        </form>
+    </body>
+</html>
