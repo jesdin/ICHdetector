@@ -4,6 +4,8 @@ from django.views.decorators.csrf import csrf_protect
 from PIL import Image
 import requests
 from io import BytesIO
+import numpy
+import matplotlib.pyplot as plt
 
 # Create your views here.
 def home(request):
@@ -20,5 +22,7 @@ def checkICH(request):
     response = requests.get(url)
     img = Image.open(BytesIO(response.content))
     print(url)
-    img.show()
+    # img.show()
+    img = numpy.array(img)
+    plt.show(img)
     return render(request,'detector.html')
