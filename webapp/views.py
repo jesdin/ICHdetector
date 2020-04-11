@@ -18,7 +18,8 @@ def go_to_detector(request):
 
 @csrf_protect
 def checkICH(request):
-    print(request.POST.get("name"))
+    name = request.POST.get("name")
+    print(name)
     url = request.POST.get("image")
     response = requests.get(url)
     img = Image.open(BytesIO(response.content))
@@ -28,3 +29,6 @@ def checkICH(request):
     plt.imshow(img)
     plt.show()
     return JsonResponse({"s": "success"}, status=200)
+
+def results(request):
+    return render(request, 'results.html')

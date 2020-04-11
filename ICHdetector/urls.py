@@ -25,4 +25,5 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('detector',views.go_to_detector,name = 'go_to_detector'),
     path('checkICH', views.checkICH, name = 'checkICH')
+    path('results', views.results, name = 'results')
 ]
