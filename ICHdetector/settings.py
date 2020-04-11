@@ -119,5 +119,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.dirname(os.path.dirname(os.path.abspath("./"))) + "\ICHdetector\\assets"
+    BASE_DIR + "/assets"
 ]
