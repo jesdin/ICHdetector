@@ -20,7 +20,7 @@ $("#submit").on("click", function () {
       type: 'POST',
       url: '/checkICH',
       data: {
-        image: uppy.getFiles()[0]["preview"],
+        image: uppy.getFiles()[0]["tus"]["uploadUrl"],
         name: uppy.getFiles()[0]["name"],
         action: 'post'
       },
