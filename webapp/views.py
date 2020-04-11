@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
+from django.http import JsonResponse
 
 from PIL import Image
 import requests
@@ -21,8 +22,9 @@ def checkICH(request):
     url = request.POST.get("image")
     response = requests.get(url)
     img = Image.open(BytesIO(response.content))
-    print(url)
+    # print(url)
     # img.show()
     img = numpy.array(img)
-    plt.show(img)
-    return render(request,'detector.html')
+    plt.imshow(img)
+    plt.show()
+    return JsonResponse({"s": "success"}, status=200)
