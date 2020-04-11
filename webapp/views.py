@@ -1,12 +1,9 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 from django.http import JsonResponse
+from webapp.predict import saveInfo
 
-from PIL import Image
-import requests
-from io import BytesIO
-import numpy
-import matplotlib.pyplot as plt
+data = {}
 
 # Create your views here.
 def home(request):
@@ -19,15 +16,8 @@ def go_to_detector(request):
 @csrf_protect
 def checkICH(request):
     name = request.POST.get("name")
-    print(name)
     url = request.POST.get("image")
-    response = requests.get(url)
-    img = Image.open(BytesIO(response.content))
-    # print(url)
-    # img.show()
-    img = numpy.array(img)
-    plt.imshow(img)
-    plt.show()
+    data = saveInfo(name, url)
     return JsonResponse({"s": "success"}, status=200)
 
 def results(request):
