@@ -132,3 +132,6 @@ dmypy.json
 .history
 
 # End of https://www.gitignore.io/api/django,visualstudiocode
+assets/ICH-Model/variables/variables.index
+assets/ICH-Model/variables/variables.data-00000-of-00001
+assets/ICH-Model/saved_model.pb
