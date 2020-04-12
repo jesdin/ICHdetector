@@ -25,8 +25,8 @@ def checkICH(request):
     img = Image.open(BytesIO(response.content))
     # print(url)
     # img.show()
-    img = numpy.array(img)
-    plt.imshow(img)
+    # img = numpy.array(img)
+    # plt.imshow(img)
     plt.show()
     return JsonResponse({"s": "success"}, status=200)
 
