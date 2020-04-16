@@ -1,13 +1,30 @@
 from PIL import Image
-import requests
-from io import BytesIO
 import numpy
-import matplotlib.pyplot as plt
 
-def saveInfo(name, url):
-    response = requests.get(url)
-    img = Image.open(BytesIO(response.content))
-    # img.show()
-    img = numpy.array(img)
-    data = {"name" : name, "image" : img, "ICH" : None}
+import tensorflow.compat.v1 as tf
+# tf.disable_v2_behavior()
+import keras
+from keras import backend as K
+import numpy as np
+import cv2
+
+global graph
+graph = tf.get_default_graph() 
+
+model = keras.models.load_model("assets/Model/weightsInception.h5")
+# model.summary()
+
+def saveInfo(name, blobs):
+    img = [numpy.array(Image.open(blob)) for blob in blobs]
+    ich = predictICH(img)
+    data = {"name" : name, "image" : blobs, "ICH" : ich}
     return data
+
+def predictICH(images):
+    images = np.array([cv2.resize(image, (256, 256)) for image in images])
+    K.reset_uids()
+    with graph.as_default():
+    	p = model.predict(images/255.)
+    predicted = np.array([int(x[0] > 0.5) for x in p])
+    print("Prediction : ",  predicted)
+    return predicted

@@ -3,6 +3,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.http import JsonResponse
 from webapp.predict import saveInfo
 
+import requests
+from io import BytesIO
+
 data = {}
 
 # Create your views here.
@@ -15,9 +18,14 @@ def go_to_detector(request):
 
 @csrf_protect
 def checkICH(request):
-    name = request.POST.get("name")
-    url = request.POST.get("image")
-    data = saveInfo(name, url
+    name = request.POST.get("name").split("~")
+    urls = request.POST.get("image").split("~")
+    blob = []
+    for url in urls:
+        response = requests.get(url)
+        blob.append(BytesIO(response.content))
+    data = saveInfo(name, blob)
+    print(data)
     return JsonResponse({"s": "success"}, status=200)
 
 def results(request):
