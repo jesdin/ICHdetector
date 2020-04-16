@@ -14,12 +14,10 @@ graph = tf.get_default_graph()
 model = keras.models.load_model("assets/Model/weightsInception.h5")
 # model.summary()
 
-def saveInfo(name, blob):
-    img = Image.open(blob)
-    # img.show()
-    img = numpy.array(img)
-    ich = predictICH([img])
-    data = {"name" : name, "image" : blob, "ICH" : ich}
+def saveInfo(name, blobs):
+    img = [numpy.array(Image.open(blob)) for blob in blobs]
+    ich = predictICH(img)
+    data = {"name" : name, "image" : blobs, "ICH" : ich}
     return data
 
 def predictICH(images):
