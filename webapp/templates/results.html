@@ -12,13 +12,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     {% load static %}
-    <script  type="text/javascript" src="{% static "webapp/results.js" %}"> </script>
+    <script type="text/javascript" src="{% static "webapp/results.js" %}"> </script>
     <link rel="stylesheet" href="{% static "webapp/results.css" %}">
     <script>
-        var image = "{{ image.0|safe }}"
-        image = image.slice(2,image.length - 1)
         $(document).ready(function () {
-            $('#img').attr('src', $('#img').attr('src') + image);
+            console.log("as")
+            {% for im in image %}
+            var image = "{{ im|safe }}"
+            image = image.slice(2, image.length - 1)
+            $('#img{{forloop.counter0}}').attr('src', $('#img{{forloop.counter0}}').attr('src') + image);
+            {% endfor %}
+            {% for im in segmented %}
+            var image = "{{ im|safe }}"
+            image = image.slice(2, image.length - 1)
+            $('#imgSeg{{forloop.counter0}}').attr('src', $('#imgSeg{{forloop.counter0}}').attr('src') + image);
+            {% endfor %}
         });
     </script>
 </head>
@@ -48,13 +56,22 @@
                 </tr>
             </thead>
             <tbody>
+                {% for ich in ICH %}
                 <tr>
-                    <td><img src='data:image/png;base64, ' alt="" id=img style="width: 400px; height: 400px;"></td>
+                    <td>
+                        <p>ICH : {{ ich }}</p>
+                        {% for i in n %}
+                        {% if forloop.parentloop.counter == forloop.counter %}
+                        <img src='data:image/png;base64, ' alt="" id='img{{i}}'>
+                        <img src='data:image/png;base64, ' alt="" id='imgSeg{{i}}'>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
-        <!-- <img src='data:image/png;base64, ' alt="" id=img style="width: 200px; height: 200px;"> -->
-</div>
+    </div>
     <!-- <div class="container" id="hemorrhage_image" style="display: None;">
     <div class="row">
             <div class="column">
