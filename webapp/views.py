@@ -17,7 +17,7 @@ def go_to_detector(request):
 
 @csrf_protect
 def checkICH(request):
-    name = request.POST.get("name")
+    name = request.POST.get("name").split("~")
     urls = request.POST.get("image").split("~")
     blob = []
     for url in urls:
@@ -28,5 +28,5 @@ def checkICH(request):
     return JsonResponse({"s": "success"}, status=200)
 @csrf_protect
 def results(request):
-    print(data)
+    # print(data)
     return render(request,'results.html',data)

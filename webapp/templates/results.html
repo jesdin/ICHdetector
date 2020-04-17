@@ -33,15 +33,27 @@
         <table>
             <tr>
                 <td><label id="img_name"><b>IMAGE NAME: </b></label></td>
-                <td><input class="form-control" id="input_img" value='{{ name }}' disabled></td>
+                <td><input class="form-control" id="input_img" value='{{ name.0 }}' disabled></td>
             </tr>
             <tr>
                 <td><label id="img_name"><b>PREDICTION: </b></label></td>
-                <td><input class="form-control" disabled value="{{ ICH }}"></td>
+                <td><input class="form-control" disabled value="{{ ICH }}" style="width: 300px;"></td>
             </tr>
         </table>
-        <!-- <p>{{ image.0 }}</p> -->
-        <img src='data:image/png;base64, ' alt="" id=img>
+        <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>NORMAL IMAGE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src='data:image/png;base64, ' alt="" id=img style="width: 400px; height: 400px;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <img src='data:image/png;base64, ' alt="" id=img style="width: 200px; height: 200px;"> -->
 </div>
     <!-- <div class="container" id="hemorrhage_image" style="display: None;">
     <div class="row">
