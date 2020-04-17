@@ -1,85 +1,50 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>RESULTS</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript">
-            var i = 0,text;
-            text = "RESULTS FROM INTRACRANIAL HEMORRHAGE MODEL:";
-            function typing(){
-                if(i < text.length){
-                    document.getElementById("results").innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(typing,100);
-                }
-            }
-            //Waiting for the function to load
-            $(document).ready(function(){
-                typing();
-                $('#image_name').delay(5000).show(0);
-                $('#hemorrhage_image').delay(5000).show(0)
-            })
-        </script>
-        <style type="text/css">
-            #img_name{
-                font-size: 2rem;
-                font-family: 'Times New Roman', Times, serif;
-            }
-            *{
-                box-sizing: border-box;
-            }
-            .column {
-                float: left;
-                width: 33.33%;
-                padding: 5px;
-                }
 
-                /* Clearfix (clear floats) */
-            .row::after {
-                content: "";
-                clear: both;
-                display: table;
-                }
-                @media screen and (max-width: 500px) {
-                    .column {
-                        width: 100%;
-                    }
-                }
-        </style>
-    </head>
-    <body>
-        <!-- Heading div -->
-        <div class="jumbotron text-center">
-                <h1 id="results" style="font-weight: bold; font-family: 'Times New Roman', Times, serif;"></h1>
-        </div>
-        <!-- This div is for the image name -->
-        <div class="container" id="image_name" style="display: None;">
-            <table align="center">
-                <tr>
-                    <td><label id="img_name"><b>IMAGE NAME: </b></label></td>
-                    <td><input class="form-control" id="input_img"></td>
-                </tr>
-                <tr>
-                    <td><label id="img_name"><b>PREDICTION: </b></label></td>
-                    <td><input class="form-control" disabled></td>
-                </tr>
-            </table>
-        </div>
-        <div class="container" id="hemorrhage_image" style="display: None;">
-            <div class="row">
-                <div class="column">
-                    <img src="Selection_013.png" alt="IMAGE" style="width: 100%;border-color: black;">
-                </div>
-                <div class="column">
-                    <img src="Selection_014.png" alt="SEGMENTED IMAGE" style="width: 100%; border-color: black;">
-                </div>
+<html>
+
+<head>
+    <title>RESULTS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    {% load static %}
+    <script  type="text/javascript" src="{% static "webapp/results.js" %}"> </script>
+    <link rel="stylesheet" href="{% static "webapp/results.css" %}">
+</head>
+
+<body>
+    <!-- Heading div -->
+    <div class="jumbotron text-center">
+        <h1 id="results" style="font-weight: bold; font-family: 'Times New Roman', Times, serif;"></h1>
+    </div>
+    <!-- This div is for the image name -->
+    <div class="container" id="image_name" style="display: None;">
+        <table>
+            <tr>
+                <td><label id="img_name"><b>IMAGE NAME: </b></label></td>
+                <td><input class="form-control" id="input_img" value='{{ name }}' disabled></td>
+            </tr>
+            <tr>
+                <td><label id="img_name"><b>PREDICTION: </b></label></td>
+                <td><input class="form-control" disabled value="{{ ICH }}"></td>
+            </tr>
+        </table>
+        <p>{{ blobs }}</p>
+</div>
+    <!-- <div class="container" id="hemorrhage_image" style="display: None;">
+    <div class="row">
+            <div class="column">
+                <img src="Selection_013.png" alt="IMAGE" style="width: 100%;border-color: black;">
+            </div>
+            <div class="column">
+                <img src="Selection_014.png" alt="SEGMENTED IMAGE" style="width: 100%; border-color: black;">
             </div>
         </div>
-    </body>
+    </div> -->
+</body>
+
 </html>
