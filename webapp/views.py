@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 from django.http import JsonResponse
 from webapp.predict import saveInfo
@@ -28,4 +28,6 @@ def checkICH(request):
     return JsonResponse({"s": "success"}, status=200)
 @csrf_protect
 def results(request):
+    if('data' not in globals()):
+        return redirect('/detector')
     return render(request,'results.html',data)

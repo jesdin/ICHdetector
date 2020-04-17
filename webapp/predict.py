@@ -34,7 +34,7 @@ def saveInfo(name, blobs):
         segImg.save(buffered, format="png")
         segmented.append(base64.b64encode(buffered.getvalue()))
         # segImg.show()
-    data = {"n" : n, "name" : name, "image" : blobs, "ICH" : ich, "segmented" : segmented}
+    data = {"n" : range(n), "name" : name, "image" : blobs, "ICH" : ich, "segmented" : segmented}
     return data
 
 def predictICH(images):
@@ -98,3 +98,12 @@ def genSegmentedImage(image):
 
     pic = cv2.convertScaleAbs(pic, alpha=(255.0))
     return pic
+
+from os import system, name 
+# for windows 
+if name == 'nt': 
+    _ = system('cls')  
+
+# for mac and linux(here, os.name is 'posix') 
+else: 
+    _ = system('clear') 

@@ -15,13 +15,18 @@
     <script  type="text/javascript" src="{% static "webapp/results.js" %}"> </script>
     <link rel="stylesheet" href="{% static "webapp/results.css" %}">
     <script>
-        var image = "{{ image.0|safe }}"
-        var imageSeg = "{{ segmented.0|safe }}"
-        image = image.slice(2,image.length - 1)
-        imageSeg = imageSeg.slice(2,imageSeg.length - 1)
         $(document).ready(function () {
-            $('#img').attr('src', $('#img').attr('src') + image);
-            $('#imgSeg').attr('src', $('#imgSeg').attr('src') + imageSeg);
+            console.log("as")
+            {% for im in image %}
+                var image = "{{ im|safe }}"
+                image = image.slice(2,image.length - 1)
+                $('#img{{forloop.counter0}}').attr('src', $('#img{{forloop.counter0}}').attr('src') + image);
+            {% endfor %}
+            {% for im in segmented %}
+            var image = "{{ im|safe }}"
+                image = image.slice(2,image.length - 1)
+                $('#imgSeg{{forloop.counter0}}').attr('src', $('#imgSeg{{forloop.counter0}}').attr('src') + image);
+            {% endfor %}
         });
     </script>
 </head>
@@ -44,8 +49,15 @@
             </tr>
         </table>
         <!-- <p>{{ image.0 }}</p> -->
-        <img src='data:image/png;base64, ' alt="" id='img'>
-        <img src='data:image/png;base64, ' alt="" id='imgSeg'>
+        {% for ich in ICH %}
+            <p>ICH : {{ ich }}</p>
+            {% for i in n %}
+                {% if forloop.parentloop.counter == forloop.counter %}
+                <img src='data:image/png;base64, ' alt="" id='img{{i}}'>
+                <img src='data:image/png;base64, ' alt="" id='imgSeg{{i}}'>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
 
 </div>
     <!-- <div class="container" id="hemorrhage_image" style="display: None;">
