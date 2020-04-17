@@ -9,7 +9,6 @@ function typing() {
 }
 //Waiting for the function to load
 $(document).ready(function () {
-    // console.log({{ name }});
     typing();
     $('#image_name').delay(5000).show(0);
     $('#hemorrhage_image').delay(5000).show(0);

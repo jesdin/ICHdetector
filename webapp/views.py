@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from webapp.predict import saveInfo
 from django.http import HttpResponse
 import requests
-from io import BytesIO, StringIO
+from io import BytesIO
 
 
 # Create your views here.

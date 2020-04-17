@@ -14,6 +14,13 @@
     {% load static %}
     <script  type="text/javascript" src="{% static "webapp/results.js" %}"> </script>
     <link rel="stylesheet" href="{% static "webapp/results.css" %}">
+    <script>
+        var image = "{{ image.0|safe }}"
+        image = image.slice(2,image.length - 1)
+        $(document).ready(function () {
+            $('#img').attr('src', $('#img').attr('src') + image);
+        });
+    </script>
 </head>
 
 <body>
@@ -33,7 +40,8 @@
                 <td><input class="form-control" disabled value="{{ ICH }}"></td>
             </tr>
         </table>
-        <p>{{ blobs }}</p>
+        <!-- <p>{{ image.0 }}</p> -->
+        <img src='data:image/png;base64, ' alt="" id=img>
 </div>
     <!-- <div class="container" id="hemorrhage_image" style="display: None;">
     <div class="row">

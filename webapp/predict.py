@@ -19,7 +19,7 @@ def saveInfo(name, blobs):
     
     img = [numpy.array(Image.open(blob)) for blob in blobs]
     ich = predictICH(img)
-    # blobs = [base64.b64encode(Image.open(blob).read()) for blob in blobs]
+    blobs = [base64.b64encode(blob.getvalue()) for blob in blobs]
     data = {"name" : name, "image" : blobs, "ICH" : ich}
     return data
 
