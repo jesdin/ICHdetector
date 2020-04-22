@@ -17,8 +17,10 @@ from io import BytesIO
 global graph
 graph = tf.get_default_graph() 
 
-model = keras.models.load_model("assets/Model/weightsInception.h5")
+# model = keras.models.load_model("assets/Model/weightsInception.h5")
 # model = keras.models.load_model("assets/Model/ICH_Inception.h5")
+
+model = keras.models.load_model("assets/Model/weights.h5")
 # model.summary()
 
 def saveInfo(name, blobs):
@@ -41,17 +43,21 @@ def saveInfo(name, blobs):
 
 def predictICH(images):
     images = np.array([cv2.resize(image, (256, 256)) for image in images])
+    # images = np.array([cv2.resize(image, (299, 299)) for image in images])
+    print(images.shape)
     K.reset_uids()
     with graph.as_default():
     	p = model.predict(images/255.)
     predicted = np.array([int(x[0] > 0.5) for x in p])
     # print(predicted[0])
-    if(predicted[0] == 1):
-        predicted = 'HEMORRHAGE DETECTED'
-    else:
-        predicted = 'HEMORRHAGE NOT DETECTED'
+    final = []
+    for prediction in predicted:
+        if(prediction == 1):
+            final.append('YES')
+        else:
+            final.append('NO')
     print("Prediction : ",  predicted)
-    return predicted
+    return final
 
 def genSegmentedImage(image):
     #image = cv2.resize(image, dsize=(256, 256), interpolation=cv2.INTER_CUBIC)
@@ -77,11 +83,11 @@ def genSegmentedImage(image):
 
     # draw the outline of the object, then draw each of the extreme points, where the left-most is red,
     # right-most is green, top-most is blue, and bottom-most is teal
-    cv2.drawContours(image, [c], -1, (0, 255, 255), 2)
-    cv2.circle(image, extLeft, 8, (0, 0, 255), -1)
-    cv2.circle(image, extRight, 8, (0, 255, 0), -1)
-    cv2.circle(image, extTop, 8, (255, 0, 0), -1)
-    cv2.circle(image, extBot, 8, (255, 255, 0), -1)
+    # cv2.drawContours(image, [c], -1, (0, 255, 255), 2)
+    # cv2.circle(image, extLeft, 8, (0, 0, 255), -1)
+    # cv2.circle(image, extRight, 8, (0, 255, 0), -1)
+    # cv2.circle(image, extTop, 8, (255, 0, 0), -1)
+    # cv2.circle(image, extBot, 8, (255, 255, 0), -1)
     
     #Cropping the image
     ADD_PIXELS = 0

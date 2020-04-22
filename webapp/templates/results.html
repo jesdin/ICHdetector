@@ -38,35 +38,30 @@
     </div>
     <!-- This div is for the image name -->
     <div class="container" id="image_name" style="display: None;">
-        <table>
-            <tr>
-                <td><label id="img_name"><b>IMAGE NAME: </b></label></td>
-                <td><input class="form-control" id="input_img" value='{{ name.0 }}' disabled></td>
-            </tr>
-            <tr>
-                <td><label id="img_name"><b>PREDICTION: </b></label></td>
-                <td><input class="form-control" disabled value="{{ ICH }}" style="width: 300px;"></td>
-            </tr>
-        </table>
         <br><br>
-        <table>
-            <thead>
-                <tr>
-                    <th>NORMAL IMAGE</th>
-                </tr>
-            </thead>
+        <table border="5" align="center" class="table">
+            <tr>
+                <th align="center">ORIGINAL IMAGE</th>
+                <th align="center">SEGMENTED IMAGE</th>
+                <th align="center">ICH DETECTED</th>
+            </tr>
             <tbody>
                 {% for ich in ICH %}
-                <tr>
-                    <td>
-                        <p>ICH : {{ ich }}</p>
+
+                <tr>                        
                         {% for i in n %}
                         {% if forloop.parentloop.counter == forloop.counter %}
-                        <img src='data:image/png;base64, ' alt="" id='img{{i}}'>
+                        <td align="center">
+                            <img src='data:image/png;base64, ' alt="" id='img{{i}}' style="height: 256px;width: 256px;">
+                        </td>
+                        <td align="center">
                         <img src='data:image/png;base64, ' alt="" id='imgSeg{{i}}'>
+                        </td>
+                        <td>
+                            <p><b>{{ ich }}</b></p>
+                        </td>
                         {% endif %}
                         {% endfor %}
-                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

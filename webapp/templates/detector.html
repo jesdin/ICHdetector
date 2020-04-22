@@ -7,14 +7,23 @@
   <!-- <link href="https://transloadit.edgly.net/releases/uppy/v1.10.1/uppy.min.css" rel="stylesheet"> -->
   {% load static %}
   <link rel="stylesheet" href="{% static "webapp/uppy.min.css" %}">
+  <link rel="stylesheet" href="{% static "webapp/detector.css" %}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+<style>
+    .hide{
+      display: none;
+    }
+</style>
 </head>
 
 <body>
   {% csrf_token %}
   <div id="drag-drop-area"></div>
-  <button type="button" class="btn btn-info btn-result" id="submit">Get Results</button>
+  <button type="button" class="result_button" id="submit">
+      <i class="loading-icon fa fa-spinner fa-spin hide"></i>
+      <span class="btn-text">GET RESULTS</span>
+  </button>
 </body>
 
 <script src="https://transloadit.edgly.net/releases/uppy/v1.10.1/uppy.min.js"></script>

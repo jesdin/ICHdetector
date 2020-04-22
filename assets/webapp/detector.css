@@ -1,0 +1,37 @@
+.result_button
+{
+    margin-left: 400px;
+    background-color: black;
+    display: inline-block;
+    width: 50%;
+    height: 60px;
+    border:5px solid #fff;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    line-height: 56px;
+    box-sizing: border-box;
+    border-radius: 50px;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    transition: all ease 0.5s;
+}
+/* .active
+{
+    font-size: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border-left-color: transparent;
+    animation: rotate 1.4s ease 0.5s infinite;
+    margin-left: 50%;
+}
+@keyframes rotate
+{
+    0%{
+        transform: rotate(360deg);
+    }
+} */

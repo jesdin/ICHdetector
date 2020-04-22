@@ -1,4 +1,5 @@
 $("#submit").on("click", function () {
+
   console.log(uppy.getFiles());
 
   csrftoken = $('input[name=csrfmiddlewaretoken]').val();
@@ -16,6 +17,10 @@ $("#submit").on("click", function () {
   });
   files = uppy.getFiles()
   if (files['length'] > 0) {
+    // TODO: loading function
+    $('.loading-icon').removeClass('hide');
+    $('.btn-text').text('GETTING RESULT FROM SERVER......');
+    // Preparing ajax request
     imageURL = files[0]["tus"]["uploadUrl"]
     imageName = files[0]["name"]
     for (i = 1; i<files['length']; i++){
